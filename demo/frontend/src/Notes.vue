@@ -50,7 +50,7 @@
 </template>
 
 <script>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import axios from 'axios'
 
 export default {
@@ -65,6 +65,10 @@ export default {
       axios.get('/notes')
         .then((response) => notes.value = response.data);
     }
+
+    onMounted(() => {
+      getNotes();
+    })
 
     const createNote = () => {
       axios.post('/notes', {
